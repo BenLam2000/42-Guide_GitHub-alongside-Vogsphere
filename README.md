@@ -1,12 +1,9 @@
-# 42-Guide_GitHub-alongside-Vogsphere
-Guide on how to setup and implement using GitHub alongside Vogsphere.
-
-## Setting Up SSH Key Pairs
+# Setting Up SSH Key Pairs
 For security reasons, it is recommended that a SSH public/private key pair be generated for each device to each git provider. Example illustrated below:
 
 ![ssh key pair](https://github.com/user-attachments/assets/4cf34780-b107-4e59-bfb2-c39eed040ed5)
 
-### Generate SSH Keys Locally
+## Generate SSH Keys Locally
 Navigate to the SSH folder: 
 ```
 cd ~/.ssh
@@ -35,7 +32,7 @@ Add the content of `keyname.pub` to your GitHub settings under SSH & GPG Keys.
 WARNING: Never share your private key with anybody as this is your secret access to any git provider.  
 The concept of SSH keys is "This public lock belongs to you. If you can open it, I’ll trust you."
 
-## Setting Up Git to Recognize Multiple Git Providers
+# Setting Up Git to Recognize Multiple Git Providers
 By default, the OpenSSH client (the one Git uses) looks for private keys in:  
 `~/.ssh/id_rsa`  
 `~/.ssh/id_ecdsa`  
@@ -128,4 +125,15 @@ Make changes, `git add .`, `git commit -m "msg"`, `git push`
 Make changes  
 When you're ready to submit, do one final `git push origin master`.
 
-That’s it for setting up GitHub alongside Vogsphere in 42! If you’re interested in learning the very fundamentals of git and how branches work, check out [this conversation with Chatgpt](https://chatgpt.com/share/692484dd-ed64-8006-ab76-3086cab856d2).
+
+# FAQ
+1. I have somehow generated multiple keys for the same device and already uploaded one of them to Github. How do I verify the correct key?
+- Notice that Github ssh keys in settings does not display the public key directly, instead it shows a fingerprint that can be derived from the public key.
+- To verify the correct keys that match the public key on Github, run the following on all public keys:
+  ```
+  ssh-keygen -lf <xxxx.pub>
+  ```
+  The public key with the fingerprint matching the one on Github is the correct one. Remove the other keys or repurpose them for other device/remote pairs.
+
+
+That’s it for setting up GitHub alongside Vogsphere in 42! If you’re interested in learning the very fundamentals of git and how branches work, check out [this conversation with Chatgpt](https://chatgpt.com/share/692484dd-ed64-8006-ab76-3086cab856d2). Feel free to raise a pull request if you feel this guide is lacking something or steps did not work as stated. I'm trying to make this guide as comprehensive and compatible for all 42 students. Thanks!
